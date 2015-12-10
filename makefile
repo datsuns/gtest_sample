@@ -1,9 +1,12 @@
 TEST_DIR := $(shell ls | grep ^test)
 
-.PHONY: all
+.PHONY: all gtest clean debug 
 
-all:
+all: gtest
 	$(foreach dir,$(TEST_DIR), make -C $(dir);)
+
+gtest:
+	make -C ./googletest
 
 clean:
 	$(foreach dir,$(TEST_DIR), make -C $(dir) clean;)
