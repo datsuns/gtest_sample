@@ -1,0 +1,28 @@
+PRODUCT_DIR := ../product
+PRODUCT_SRC := $(shell ls $(PRODUCT_DIR)/*.cpp)
+TEST_SRC    := $(shell ls *.cpp)
+
+SRC_ALL := $(PRODUCT_SRC) $(TEST_SRC)
+OBJS    := $(SRC_ALL:.cpp=.o)
+TARGET  := $(shell basename `pwd`).out
+
+CPPFLAGS += -I$(PRODUCT_DIR)
+
+.PHONY: all
+
+all:$(TARGET)
+	./$(TARGET)
+
+$(TARGET):$(OBJS)
+	$(CXX) -o $(TARGET) $(OBJS) $(GMOCK_LIB)
+
+clean:
+	-@rm $(OBJS)
+	-@rm $(TARGET)
+
+
+debug:
+	echo $(OBJS)
+	echo $(SRC_ALL)
+
+include ../makefile.gtest

@@ -1,0 +1,8 @@
+GTEST_DIR := $(shell pwd)/../googletest/googletest
+GMOCK_DIR := $(shell pwd)/../googletest/googlemock
+
+GTEST_LIB := $(GTEST_DIR)/make/gtest_main.a
+GMOCK_LIB := $(GMOCK_DIR)/make/gmock_main.a
+
+CPPFLAGS += -I$(GTEST_DIR)/include -I$(GMOCK_DIR)/include 
+
